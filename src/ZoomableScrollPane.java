@@ -1,3 +1,6 @@
+// Created by: Pixel Duke
+// Link: https://pixelduke.com/2012/09/16/zooming-inside-a-scrollpane/
+
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -39,14 +42,12 @@ public class ZoomableScrollPane extends ScrollPane {
 
         scaleTransform.setX(scaleValue);
         scaleTransform.setY(scaleValue);
-
     }
 
     public void zoomActual() {
 
         scaleValue = 1;
         zoomTo(scaleValue);
-
     }
 
     public void zoomOut() {
@@ -68,7 +69,6 @@ public class ZoomableScrollPane extends ScrollPane {
         }
 
         zoomTo(scaleValue);
-
     }
 
     /**
@@ -102,7 +102,6 @@ public class ZoomableScrollPane extends ScrollPane {
 
         // apply zoom
         zoomTo(scale);
-
     }
 
     private class ZoomHandler implements EventHandler<ScrollEvent> {

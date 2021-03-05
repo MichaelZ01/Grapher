@@ -15,6 +15,7 @@ public class Cell extends Pane {
     // Constructor
     public Cell(String cellId) {
         this.cellId = cellId;
+        this.relocate(500, 500);
     }
 
     // Set View
