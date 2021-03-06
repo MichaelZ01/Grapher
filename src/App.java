@@ -1,33 +1,36 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
-    Graph graph = new Graph();
+
+    Graph graph;
+    ToolBar toolBar;
 
     @Override
     public void start(Stage primaryStage) {
-        BorderPane root = new BorderPane();
 
-        graph = new Graph();
+        BorderPane root = new BorderPane();
+        this.graph = new Graph();
+        this.toolBar = new ToolBar(graph);
 
         root.setCenter(graph.getScrollPane());
-
+        root.setTop(toolBar.getNav());
 
         Scene scene = new Scene(root, 1000, 800);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-
-        Button addButton = new Button();
-        addButton.setText("Add Node");
-        addButton.setTranslateX(20);
-        addButton.setPrefSize(100, 30);
-
-        root.setTop(addButton);
 
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -55,15 +58,6 @@ public class App extends Application {
         Layout layout = new RandomLayout(graph);
         layout.execute();
 
-
-        addButton.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent arg0) {
-                graph.beginUpdate();
-                model.addCell("A new Cell", CellType.TRIANGLE);
-                graph.endUpdate();
-            };
-        });
     }
 
     public static void main(String[] args) {
