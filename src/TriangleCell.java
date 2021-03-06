@@ -4,8 +4,8 @@ import javafx.scene.shape.Polygon;
 // A triangle Graph Node
 public class TriangleCell extends Cell {
 
-    public TriangleCell(String id) {
-        super(id);
+    public TriangleCell(int id, String name) {
+        super(id, name);
 
         double width = 50;
         double height = 50;

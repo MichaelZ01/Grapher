@@ -43,13 +43,13 @@ public class App extends Application {
         model.addCell("Cell F", CellType.RECTANGLE);
         model.addCell("Cell G", CellType.TRIANGLE);
 
-        model.addEdge("Cell A", "Cell B");
-        model.addEdge("Cell B", "Cell A");
-        model.addEdge("Cell B", "Cell C");
-        model.addEdge("Cell C", "Cell D");
-        model.addEdge("Cell B", "Cell E");
-        model.addEdge("Cell D", "Cell F");
-        model.addEdge("Cell D", "Cell G");
+        model.addEdge(0, 1);
+        model.addEdge(1, 0);
+        model.addEdge(1, 2);
+        model.addEdge(2, 3);
+        model.addEdge(2, 5);
+        model.addEdge(4, 6);
+        model.addEdge(4, 1);
         graph.endUpdate();
 
         Layout layout = new RandomLayout(graph);

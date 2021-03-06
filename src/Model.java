@@ -15,11 +15,15 @@ public class Model {
     private List<Edge> addedEdges;
     private List<Edge> removedEdges;
 
-    private Map<String,Cell> cellMap; 
+    private Map<Integer, Cell> cellMap; 
+
+    private int cellId;
+    private int edgeId;
 
     public Model() {
-         graphParent = new Cell( "_ROOT_");
-         clear();
+        // Parent cell is cell 0
+        graphParent = new Cell(-1, "_ROOT_");
+        clear();
     }
 
     // Clear Graph model
@@ -34,20 +38,23 @@ public class Model {
         removedEdges = new ArrayList<>();
 
         cellMap = new HashMap<>(); 
+
+        cellId = 0;
+        edgeId = 0;
     }
 
     // Add a new cell to the graph
-    public void addCell(String id, CellType type) {
+    public void addCell(String name, CellType type) {
 
         switch (type) {
 
         case RECTANGLE:
-            RectangleCell rectangleCell = new RectangleCell(id);
+            RectangleCell rectangleCell = new RectangleCell(cellId, name);
             addCell(rectangleCell);
             break;
 
         case TRIANGLE:
-            TriangleCell circleCell = new TriangleCell(id);
+            TriangleCell circleCell = new TriangleCell(cellId, name);
             addCell(circleCell);
             break;
 
@@ -59,17 +66,22 @@ public class Model {
     private void addCell(Cell cell) {
         addedCells.add(cell);
         cellMap.put(cell.getCellId(), cell);
+        cellId ++;
     }
 
     // Add a new edge to the graph
-    public void addEdge(String sourceId, String targetId) {
+    public void addEdge(int sourceId, int targetId) {
 
         Cell sourceCell = cellMap.get(sourceId);
         Cell targetCell = cellMap.get(targetId);
+        
+        assert sourceCell != null;
+        assert targetCell != null;
 
-        Edge edge = new Edge(sourceCell, targetCell);
+        Edge edge = new Edge(edgeId, sourceCell, targetCell);
 
         addedEdges.add(edge);
+        edgeId ++;
     }
 
     // Attaching cells to root cell

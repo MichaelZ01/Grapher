@@ -3,11 +3,14 @@ import javafx.scene.Group;
 // A directed edge represents a connection between two nodes
 public class Edge extends Group {
 
+    private int edgeId;
+
     protected Cell source;
     protected Cell target;
 
-    public Edge(Cell source, Cell target) {
+    public Edge(int id, Cell source, Cell target) {
 
+        this.edgeId = id;
         this.source = source;
         this.target = target;
 
